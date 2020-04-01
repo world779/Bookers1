@@ -1,9 +1,14 @@
-<p id="notice">
+<p class="notice">
 	<%= notice %>
 </p>
 
-<p>Title:<%= @book.title %></p>
-<p>Body:<%= @book.body %></p>
+<div class="show_visual">
+	<div class="show_visual">
+		<p><b>Title:</b><%= @book.title %></p>
+		<p><b>Body:</b><%= @book.body %></p>
+	</div>
 
-<%= link_to "Edit", edit_book_path(@book) %>
-<a href="/books">Back</a>
+	<%= link_to "Edit", edit_book_path(@book) , :style=>"color:black";%>
+	<font>|</font>
+	<a href="/books">Back</a>
+</div>

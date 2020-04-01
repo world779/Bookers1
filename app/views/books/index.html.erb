@@ -1,46 +1,75 @@
-<h2>Books</h2>
+<p class="notice">
+	　　<%= notice %>
+</p>
+
+<h2>　Books</h2>
+<div class="top_visual">
 	<table>
-		<thead>
+		<!-- <thead> -->
 			<tr>
 				<th>Title</th>
 				<th>Body</th>
 			</tr>
-		</thead>
-
-
-		
+		<!-- </thead>	 -->
 
 		<tbody>
 			<% @books.each do |book| %>
 				<tr>
 					<td><%= book.title %></td>
-					<td><%= book.body %></td>
-					<td><%= link_to "Show", book %></td>
-					<td><%= link_to "Edit", edit_book_path(book) %></td>
-					<td><%= link_to "Destroy", book_path(book), method: :delete %></td>
+					<td>　<%= book.body %></td>
+					<td>　<%= link_to "Show", book , :style=>"color:black";%>　</td>
+					<td><%= link_to "Edit", edit_book_path(book), :style=>"color:black";%>　</td>
+					<td><%= link_to "Destroy", book_path(book), method: :delete,  data: { confirm: '削除しますか？' }, :style=>"color:black";%></td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
 
-<h3>New book</h3>
+	<h3>New book</h3>
 
 
 
 
-<%= form_for(@book) do |f| %>
-	<% if @book.errors.any? %>
-		<p><%= @book.errors.count %>件のエラー</p>
-		<% @book.errors.full_messages.each do |message| %>
-			<%= message %>
+	<%= form_for(@book) do |f| %>
+	
+		<% if @book.errors.any? %>
+			<div class="error">
+				<div class="error_title">　<b><%= @book.errors.count %>errors prohibited this book from being saved:</b></div>
+				<p class="error_item">
+					<% @book.errors.full_messages.each do |message| %>
+						・<%= message %><br>
+					<% end %>
+				</p>
+			</div>
+
+			
+				<div class="validation_form">
+					<div class="validation">Title</div>
+				
+					<%= f.text_field :title, :style=>"border:1px solid red"; %><br>
+					
+				</div>
+				
+			
+
+			<div>
+				<div class="validation2">Body</div>
+				<div class="validation_form2">
+					<%= f.text_area :body, :style=>"border:3px solid red";%>
+				</div>
+			<br>
+			<%= f.submit "Create Book" %>
+	
+		<% else %>
+			<font>Title<br></font>
+			<%= f.text_field :title %><br>
+
+			<font>Body<br></font>
+			<div class="varidation_form">
+				<%= f.text_area :body %>
+			</div>
+			<br>
+			<%= f.submit "Create Book" %>
 		<% end %>
 	<% end %>
-
-	<p>Title</p>
-	<%= f.text_field :title %>
-
-	<p>Body</p>
-	<%= f.text_area :body %>
-	<br>
-	<%= f.submit "Create Book" %>
-<% end %>
+</div>
